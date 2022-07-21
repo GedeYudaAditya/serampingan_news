@@ -1,0 +1,180 @@
+/* ============ All Device View =============== */
+
+/* Fonts */
+@font-face {
+    font-family: 'patrick';
+    src: url(../font/PatrickHand-Regular.ttf);
+}
+@font-face {
+    font-family: 'balsamiq';
+    src: url(../font/BalsamiqSans-Regular.ttf);
+}
+@font-face {
+    font-family: 'roboto';
+    src: url(../font/Roboto-Light.ttf);
+}
+
+/* Main.layout */
+.withBg{
+    background-image: url(../images/sawah.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: brightness(0.5) blur(5px) drop-shadow(0px 0px 10px black);
+    color: white;
+    font-family: 'balsamiq';
+}
+
+.noBg{
+    font-family: 'roboto';
+}
+
+.carousel-inner .bg-carousel {
+    /* width:640px; */
+    background-size: cover;
+    object-fit: cover;
+    filter: brightness(30%);
+    width: 100%;
+    height:360px;
+}
+
+.hide{
+    display: unset;
+}
+
+.img-cards{
+    object-fit: cover;
+    width: 100%;
+    height:150px;
+    transition: all;
+    filter:saturate(30%);
+    transition-duration: 0.5s;
+}
+.img-cards:hover{
+    /* object-fit:contain; */
+    filter:unset;
+    width: 100%;
+    height:200px;
+    transition: all;
+    transition-duration: 0.5s;
+}
+.img-thumbnails{
+    object-fit: cover;
+    width: 100%;
+    height:380px;
+}
+
+.mylist{
+    border-top: 0px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+    border-right: 0px !important;
+    border-left: 0px !important;
+}
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+/* Component Layouting */
+.title{
+    font-size: 100px
+}
+
+.sub-title{
+    font-size: 35px
+}
+
+.center{
+    height: 100vh;
+    display: flex;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.card-details{
+    font-size: 10px;
+}
+
+.spacer{
+    height: 4.5vh;
+}
+
+.navbarFloating{
+    background-image:url(/images/sawah.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    height:25vh;
+    width:100%;
+}
+
+/* ============ Mobile View =============== */
+
+@media (max-width: 992px) {
+    .title{
+        font-size: 48px
+    }
+    .sub-title{
+        font-size: 24px
+    }
+    .spacer{
+        height: 4.5vh;
+    }
+    .navbarFloating{
+        background-image:url(/images/sawah.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position:center;
+        height:0vh;
+        width:100%;
+    }
+
+    .hide{
+        display: none;
+    }
+}
+
+@media (max-width: 388px) {
+    .title{
+        font-size: 28px
+    }
+    .sub-title{
+        font-size: 24px
+    }
+
+    .spacer{
+        height: 4.5vh;
+    }
+    .navbarFloating{
+        background-image:url(/images/sawah.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position:center;
+        height:0vh;
+        width:100%;
+    }
+    .hide{
+        display: none;
+    }
+    .struktur-kepengurusan{
+        width: 100% !important;
+        height: 500px !important;
+        object-position: center !important;
+    }
+
+}
