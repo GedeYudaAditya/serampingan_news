@@ -7,10 +7,17 @@
         <p>Menambahkan, mengedit, dan menghapus berita (<code>Create Read Update Delete</code>) yang akan ditampilkan pada website serampingan news
         </p>
     </div>
+
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     
     <div class="row mb-3 justify-content-between align-items-center">
         <div class="col d-flex justify-content-start">
-            <h4>List Berita</h5>
+            <h4>List Berita</h4>
         </div>
         <div class="col d-flex justify-content-center search-hide">
             <form action="/dashboard/berita">

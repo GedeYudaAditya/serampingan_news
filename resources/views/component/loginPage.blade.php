@@ -54,6 +54,12 @@
                     </div>
 
                 </form>
+
+                <div class="row">
+                    <div class="col-12 text-center text-lg-start mt-4 pt-2">
+                            <a href="{{ route('forget.password.get') }}" class="btn btn-link">Forgot Password?</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

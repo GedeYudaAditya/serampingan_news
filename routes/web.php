@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\PorfilDesaController;
+use App\Http\Controllers\RegisterController;
+use App\Models\WebImgManagement;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +47,11 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index']);
+    Route::post('/dashboard/bg', [AdminController::class, 'img'])->name('bg');
+    Route::post('/dashboard/splash', [AdminController::class, 'splashImg']);
+
+    Route::get('/dashboard/keamanan', [AdminController::class, 'keamanan']);
+    Route::post('/dashboard/keamanan', [AdminController::class, 'ubahKeamanan']);
 
     Route::get('/dashboard/berita', [AdminController::class, 'berita']);
 
@@ -71,7 +79,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/dashboard/profil/delete/{porfildesa:id}', [PorfilDesaController::class, 'destroy']);
 
-    Route::post('/logout', [AdminController::class, 'logout']);
+    Route::get('/dashboard/tambah-user', [RegisterController::class, 'index'])->name('tambahUser');
+    Route::post('/dashboard/tambah-user', [RegisterController::class, 'store'])->name('addUser');
+    Route::post('/dashboard/user/delete/{user:username}', [RegisterController::class, 'destroy']);
+
+    Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 });
+Route::get('/forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('/forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::get('/dashboard/berita/createSlug', [BeritaController::class, 'checkSlug']);

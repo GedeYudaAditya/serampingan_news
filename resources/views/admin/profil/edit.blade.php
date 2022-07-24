@@ -12,7 +12,10 @@
     <div class="container mb-3">
         <div class="mb-3">
             <label for="title" class="form-label">Title Informasi desa</label>
-            <input class="form-control" name="title" type="text" id="title" value="{{ $news->title }}">
+            <input placeholder="Sebelumnya : {{ $news->title }}" class="form-control @error('title') is-invalid @enderror" name="title" type="text" id="title" value="{{ old('title', $news->title) }}">
+            @error('title')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="bd-callout bd-callout-info">
@@ -22,8 +25,11 @@
         </div>
 
         <textarea name="informasi" class="ckeditor" id="ckedtor">
-            {!! $news->informasi !!}
+            {!! old('informasi', $news->informasi) !!}
         </textarea>
+        @error('informasi')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
     </div>
     
     <div class="container-fluid border-bottom">
@@ -48,6 +54,9 @@
             <label for="formFile" class="form-label">Gambar Struktur desa</label>
             <input type="hidden" name="oldImage" value="{{ $news->struktur }}">
             <input value="{{ $news->struktur }}" name="struktur" class="form-control" type="file" id="formFile" onchange="previewImage()">
+            @error('struktur')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
     </div>
     

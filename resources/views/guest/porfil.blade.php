@@ -21,7 +21,12 @@
                         {!! $news[0]->informasi !!}
                     </div>
                 @else
-                    <h1 style="margin: 0 auto;">Tidak ada data!</h1>
+                    <div class="container-fluid bg-light border shadow border-bottom-0 rounded-top py-3 px-3 pb-3">
+                        <div class="row justify-content-center">
+                            <img src="/images/404-missing-loop-01.gif" height="100" class="col-12 img-fluid" alt="missing page">
+                        </div>
+                        <h3 class="text-center mt-3">Oups.. Tidak ada yang bisa di lihat untuk saat ini</h1>
+                    </div>
                 @endif
             </div>
             <div class="col-lg-3 hide px-0">

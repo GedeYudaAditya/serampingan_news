@@ -58,7 +58,7 @@ class PorfilDesaController extends Controller
 
         PorfilDesa::create($validatedData);
 
-        return redirect('/dashboard/profil/')->with('success', 'Berhasil di tambahkan.');
+        return redirect('/dashboard/profil/')->with('success', 'Profil telah di tambahkan.');
     }
 
     public function editView(PorfilDesa $porfilDesa)
@@ -97,7 +97,7 @@ class PorfilDesaController extends Controller
 
         PorfilDesa::where('id', $porfilDesa->id)->update($validatedData);
 
-        return redirect('/dashboard/profil/')->with('success', 'Berhasil di ubah.');
+        return redirect('/dashboard/profil/')->with('success', 'Profil berhasil di ubah.');
     }
 
     public function info(PorfilDesa $porfilDesa)
@@ -124,7 +124,7 @@ class PorfilDesaController extends Controller
                 'is_active' => true
             ]);
         }
-        return back()->with('success', 'Active berhasil di ubah!');
+        return back()->with('success', 'Pengaturan profil yang aktif berhasil di ubah!');
     }
 
     public function destroy(PorfilDesa $porfildesa)
@@ -132,6 +132,6 @@ class PorfilDesaController extends Controller
         // dd($porfildesa);
         Storage::delete($porfildesa->struktur);
         PorfilDesa::destroy($porfildesa->id);
-        return back()->with('success', 'Berhasil di hapus!');
+        return back()->with('success', 'Profil berhasil di hapus!');
     }
 }

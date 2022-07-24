@@ -14,7 +14,10 @@
         <div class="mb-3 row">
             <label for="title" class="col-sm-2 col-form-label">Title</label>
             <div class="col-sm-10">
-                <input type="text" name="title" class="form-control" id="title" value="{{ $news->title }}">
+                <input type="text" name="title" placeholder="Sebelumnya : {{ $news->title }}" class="form-control @error('title') is-invalid @enderror" id="title" value="{{ old('title', $news->title) }}">
+                @error('title')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
 
@@ -29,9 +32,12 @@
         </div>
     
         <div class="mb-3 row">
-            <label for="formFile" class="col-sm-2 col-form-label">Gambar Struktur desa</label>
+            <label for="formFile" class="col-sm-2 col-form-label">Gambar Thumbnail</label>
             <div class="col-sm-10">
-                <input name="thumbnail" class="form-control" type="file" id="formFile" onchange="previewImage()">
+                <input name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" type="file" id="formFile" onchange="previewImage()">
+                @error('thumbnail')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
 
@@ -43,23 +49,32 @@
                     <option value="">Hahaha1</option>
                     <option value="">Hahaha2</option>
                 </select> --}}
-                <input value="{{ $news->category->name }}" type="text" name="category_id" class="form-control" id="title">
+                <input value="{{ old('category_id', $news->category->name) }}" placeholder="Sebelumnya : {{ $news->category->name }}" type="text" name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="title">
+                @error('category_id')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="mb-3 row">
             <label for="slug" class="col-sm-2 col-form-label">Slug</label>
             <input type="hidden" name="oldImage" value="{{ $news->thumbnail }}">
             <div class="col-sm-10">
-                <input value="{{ $news->slug }}" type="text" name="slug" class="form-control" id="slug">
+                <input value="{{ old('slug', $news->slug) }}" type="text" name="slug" class="form-control @error('slug') is-invalid @enderror" id="slug" placeholder="Sebelumnya : {{ $news->slug }}">
+                @error('slug')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
 
         <div class="mb-3 row">
             <label for="ckedtor" class="col-sm-2 col-form-label">Isi Berita</label>
             <div class="col-sm-10">
-                <textarea name="body" class="ckeditor" id="ckedtor">
+                <textarea name="body" class="ckeditor @error('body') is-invalid @enderror" id="ckedtor">
                     {{ $news->body }}
                 </textarea>
+                @error('body')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="container mb-5">

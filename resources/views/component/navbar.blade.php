@@ -22,7 +22,7 @@
                             <b><a class="nav-link {{ $active == 'porfil' ? 'active' : '' }}" href="/profil">Profil</a></b>
                         </li>
                         <li class="nav-item me-5">
-                            <b><a class="nav-link {{ $active == 'struktur' ? 'active' : '' }}" href="/struktur">Struktur Desa</a></b>
+                            <b><a class="nav-link {{ $active == 'struktur' ? 'active' : '' }}" href="/struktur">Struktur Organisasi</a></b>
                         </li>
                         {{-- <form class="d-flex" role="search">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
