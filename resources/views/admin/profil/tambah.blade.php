@@ -12,7 +12,10 @@
     <div class="container mb-3">
         <div class="mb-3">
             <label for="title" class="form-label">Title Informasi desa</label>
-            <input class="form-control" name="title" type="text" id="title">
+            <input class="form-control @error('title') is-invalid @enderror" name="title" type="text" id="title" placeholder="Berikan judul untuk informasi desa" value="{{ old('title') }}">
+            @error('title')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="bd-callout bd-callout-info">
@@ -21,11 +24,16 @@
             </p>
         </div>
 
-        <textarea name="informasi" class="ckeditor" id="ckedtor"></textarea>
+        <textarea name="informasi" class="ckeditor" id="ckedtor">
+            {!! old('informasi') !!}
+        </textarea>
+        @error('informasi')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
     </div>
     
     <div class="container-fluid border-bottom">
-        <h3>Struktur Desa</h3>
+        <h3>Struktur Organisasi</h3>
     </div>
     <div class="container mb-3">
         <div class="bd-callout bd-callout-info">
@@ -39,8 +47,11 @@
         </div>
     
         <div class="mb-3">
-            <label for="formFile" class="form-label">Gambar Struktur desa</label>
-            <input name="struktur" class="form-control" type="file" id="formFile" onchange="previewImage()">
+            <label for="formFile" class="form-label">Gambar Struktur Organisasi</label>
+            <input name="struktur" class="form-control @error('struktur') is-invalid @enderror" type="file" id="formFile" onchange="previewImage()">
+            @error('struktur')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
     </div>
     

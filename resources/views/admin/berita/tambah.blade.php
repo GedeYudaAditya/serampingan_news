@@ -14,7 +14,10 @@
         <div class="mb-3 row">
             <label for="title" class="col-sm-2 col-form-label">Title</label>
             <div class="col-sm-10">
-                <input type="text" name="title" class="form-control" id="title" value="{{ old("title") }}">
+                <input type="text" placeholder="Tambahkan title berita" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="{{ old("title") }}">
+                @error('title')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
 
@@ -25,9 +28,12 @@
         </div>
     
         <div class="mb-3 row">
-            <label for="formFile" class="col-sm-2 col-form-label">Gambar Struktur desa</label>
+            <label for="formFile" class="col-sm-2 col-form-label">Gambar Thumbnail</label>
             <div class="col-sm-10">
-                <input name="thumbnail" class="form-control" type="file" id="formFile" onchange="previewImage()">
+                <input name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" type="file" id="formFile" onchange="previewImage()">
+                @error('thumbnail')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
 
@@ -39,22 +45,31 @@
                     <option value="">Hahaha1</option>
                     <option value="">Hahaha2</option>
                 </select> --}}
-                <input type="text" name="category_id" class="form-control" id="category_id" value="{{ old("category_id") }}">
+                <input type="text" placeholder="Membuat kategori atau menggunakan yang sudah ada" name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="category_id" value="{{ old("category_id") }}">
+                @error('category_id')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="mb-3 row">
             <label for="slug" class="col-sm-2 col-form-label">Slug</label>
             <div class="col-sm-10">
-                <input type="text" name="slug" class="form-control" id="slug" value="{{ old("slug") }}">
+                <input type="text" placeholder="Sesuaikan accessable slug untuk berita" name="slug" class="form-control @error('slug') is-invalid @enderror" id="slug" value="{{ old("slug") }}">
+                @error('slug')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
 
         <div class="mb-3 row">
             <label for="ckedtor" class="col-sm-2 col-form-label">Isi Berita</label>
             <div class="col-sm-10">
-                <textarea name="body" class="ckeditor" id="ckedtor">
+                <textarea name="body" class="ckeditor @error('body') is-invalid @enderror" id="ckedtor">
                     {!! old("body") !!}
                 </textarea>
+                @error('body')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="container mb-5">

@@ -62,9 +62,19 @@ class BeritaController extends Controller
         $excerpt = implode(" ", $shortPart);
         $request['excerpt'] = $excerpt;
 
+        $validatedData = $request->validate([
+            'category_id' => 'required',
+            'user_id' => 'required',
+            'title' => 'required|max:255',
+            'slug' => 'required|max:255|unique:beritas',
+            'thumbnail' => 'required|image|file|max:2048',
+            'excerpt' => 'required',
+            'body' => 'required',
+        ]);
+
         $category_id = Category::firstWhere('name', $request['category_id']);
         if (isset($category_id)) {
-            $request['category_id'] = $category_id->id;
+            $validatedData['category_id'] = $category_id->id;
         } else {
             $data = [
                 'name' => $request['category_id'],
@@ -72,26 +82,17 @@ class BeritaController extends Controller
             ];
             Category::create($data);
             $category_id = Category::firstWhere('name', $request['category_id']);
-            $request['category_id'] = $category_id->id;
+            $validatedData['category_id'] = $category_id->id;
         }
         // dd($matches);
         //
         // dd($request);
-        $validatedData = $request->validate([
-            'category_id' => 'required',
-            'user_id' => 'required',
-            'title' => 'required|max:255',
-            'slug' => 'required|max:255|unique:beritas',
-            'thumbnail' => 'image|file|max:2048',
-            'excerpt' => 'required',
-            'body' => 'required',
-        ]);
 
         $validatedData['thumbnail'] = $request->file('thumbnail')->store('thumbnail-images');
 
         Berita::create($validatedData);
 
-        return redirect('/dashboard/berita/')->with('success', 'Berhasil di tambahkan.');
+        return redirect('/dashboard/berita/')->with('success', 'Berita berhasil di tambahkan.');
     }
 
     /**
@@ -147,20 +148,6 @@ class BeritaController extends Controller
         $excerpt = implode(" ", $shortPart);
         $request['excerpt'] = $excerpt;
 
-        $category_id = Category::firstWhere('name', $request['category_id']);
-        if (isset($category_id)) {
-            $request['category_id'] = $category_id->id;
-        } else {
-            $data = [
-                'name' => $request['category_id'],
-                'slug' => strtolower($request['category_id'])
-            ];
-            Category::create($data);
-            $category_id = Category::firstWhere('name', $request['category_id']);
-            $request['category_id'] = $category_id->id;
-        }
-        // dd($matches);
-        //
         $rules = [
             'category_id' => 'required',
             'user_id' => 'required',
@@ -178,6 +165,20 @@ class BeritaController extends Controller
 
         $validatedData = $request->validate($rules);
 
+        $category_id = Category::firstWhere('name', $request['category_id']);
+        if (isset($category_id)) {
+            $validatedData['category_id'] = $category_id->id;
+        } else {
+            $data = [
+                'name' => $request['category_id'],
+                'slug' => strtolower($request['category_id'])
+            ];
+            Category::create($data);
+            $category_id = Category::firstWhere('name', $request['category_id']);
+            $validatedData['category_id'] = $category_id->id;
+        }
+        // dd($matches);
+        //
 
         if ($request->file('thumbnail')) {
             if ($request->oldImage) {
@@ -188,7 +189,7 @@ class BeritaController extends Controller
 
         Berita::where('slug', $berita->slug)->update($validatedData);
 
-        return redirect('/dashboard/berita/')->with('success', 'Berhasil di edit.');
+        return redirect('/dashboard/berita/')->with('success', 'Berita berhasil di edit.');
     }
 
     /**
@@ -213,7 +214,7 @@ class BeritaController extends Controller
     {
         Storage::delete($berita->thumbnail);
         Berita::destroy($berita->id);
-        return back()->with('success', 'Berhasil di hapus!');
+        return back()->with('success', 'Berita berhasil di hapus!');
     }
 
     public function checkSlug(Request $request)

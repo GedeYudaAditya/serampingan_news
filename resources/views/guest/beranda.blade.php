@@ -9,21 +9,21 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/images/sawah.jpg" class="d-block w-100 bg-carousel" alt="Gambar 1">
+      <img src="{{ $img_splash != null ? asset($img_splash->splash_image1) : 'https://source.unsplash.com/1200x400?natural' }}" class="d-block w-100 bg-carousel" alt="Gambar 1">
       <div class="carousel-caption d-none d-md-block">
         <h2>Selamat Datang di</h5>
         <p>Website Desa Serampingan</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="/images/alam.jpg" class="d-block w-100 bg-carousel" alt="Gambar 2">
+      <img src="{{ $img_splash != null ? asset($img_splash->splash_image2) : 'https://source.unsplash.com/1200x400?natural' }}" class="d-block w-100 bg-carousel" alt="Gambar 2">
       <div class="carousel-caption d-none d-md-block">
         <h5>Desa Serampingan News</h5>
         <p>Tempat untuk mendapatkan beberapa informasi terkini tentang Desa Serampingan</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="/images/bali.png" class="d-block w-100 bg-carousel" alt="Gambar 3">
+      <img src="{{ $img_splash != null ? asset($img_splash->splash_image3) : 'https://source.unsplash.com/1200x400?natural' }}" class="d-block w-100 bg-carousel" alt="Gambar 3">
       <div class="carousel-caption d-none d-md-block">
         <h5>&copy; Powerd by KKN Undiksha 2022</h5>
         <p>Web hasil kerjasama antara KKN Undiksha 2022 dengan Desa Serampingan</p>
@@ -56,7 +56,7 @@
                         <img src="{{ $news->thumbnail != null ? asset($news->thumbnail) : 'https://source.unsplash.com/1200x400?'.$news->category->name }}" class="img-cards" alt="">
                       </div>
                       <div class="col-md-9">
-                        <div class="d-flex w-100 justify-content-between">
+                        <div class="d-flex w-100 justify-content-between mt-2 mb-3 pb-2 border-bottom">
                           <h5 class="mb-1">{{ $news->title }}</h5>
                           <small class="text-muted">{{ $news->created_at->diffForHumans() }}</small>
                         </div>
